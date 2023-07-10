@@ -50,6 +50,6 @@ In fewer words, the application is expected to work on as follows:
 assignment submission
 ---------------------
 
-You can either fork and create a Pull-request with your changes to this repository or email a zipped version of the code.
+You can either fork and create a Pull-request with your changes to this repository or email a zipped version of the code. More information on git and github pull-requests can be found at https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request.
 
 Happy coding !
