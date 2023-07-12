@@ -28,29 +28,20 @@ def register(subpath):
 
     conn = get_db_connection()
     subpaths = conn.execute('SELECT subpath, count FROM subpaths WHERE subpath == "' + subpath + '"').fetchall()
-    conn.close()
 
-    if subpaths:
-        # List not empty
-        conn = get_db_connection()
+    if subpaths: # List not empty
         conn.execute('UPDATE subpaths SET count = count + 1 WHERE subpath == "' + subpath + '"')
         conn.commit()
-        subpaths = conn.execute('SELECT subpath, count FROM subpaths').fetchall()
-        conn.close()
-        
-        return {
-            "status": "OK",
-            "data": {subpath: count for subpath, count in subpaths}
-        }
-    else:
-        # List empty
-        conn = get_db_connection()
-        conn.execute('INSERT INTO subpaths (subpath, count) VALUES ("' + subpath + '", 1)')
-        conn.commit()
-        subpaths = conn.execute('SELECT subpath, count FROM subpaths').fetchall()
         conn.close()
 
         return {
-            "status": "OK",
-            "data": {subpath: count for subpath, count in subpaths}
+            "status": "+1"
+        }
+    else: # List empty
+        conn.execute('INSERT INTO subpaths (subpath, count) VALUES ("' + subpath + '", 1)')
+        conn.commit()
+        conn.close()
+
+        return {
+            "status": "New subpath",
         }
